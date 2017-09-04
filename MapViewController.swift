@@ -19,7 +19,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapView.delegate = self
         
         mapView.removeAnnotations(mapView.annotations)
         
@@ -31,13 +30,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             let firstName = $0.firstName
             let lastName = $0.lastName
             let title = "\(firstName) \(lastName)"
+        
             
             let annotation = MKPointAnnotation()
             annotation.title = title
             annotation.subtitle = $0.mediaUrl
             annotation.coordinate = coordinate
-
-        
+            
+           
             return annotation
             
         }
@@ -45,16 +45,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
         
         mapView.addAnnotations(annotations)
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.viewDidLoad), name:NSNotification.Name(rawValue: "ReloadData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(viewDidLoad), name:Notification.Name("ReloadData"), object: nil)
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ReloadData"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("ReloadData"), object: nil)
     }
     
     

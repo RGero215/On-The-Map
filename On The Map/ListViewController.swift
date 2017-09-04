@@ -25,7 +25,7 @@ class ListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         studentTableView.reloadData()
     }
     
@@ -38,18 +38,20 @@ extension ListViewController {
         return MapPin.getPins().count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let pin = MapPin.getPins()[indexPath.row]
         let app = UIApplication.shared
         let url = URL(string: pin.mediaUrl)
         app.open(url!, options: [:], completionHandler: nil)
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let pin = MapPin.getPins()[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
+        let cell = studentTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath as IndexPath)
         
         cell.textLabel?.text = pin.firstName + " " + pin.lastName
+        cell.detailTextLabel?.text = pin.mediaUrl
+        cell.imageView?.image = UIImage(named: "Pin")
         
         return cell
     }

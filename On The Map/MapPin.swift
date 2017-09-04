@@ -110,9 +110,26 @@ struct MapPin {
             if $0.0 != nil {
                 let result = $0.0 as! [String: AnyObject]
                 setPins(mapPins: try! Parser.parseMapPins(json: result)!)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReloadData"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name("ReloadData"), object: nil)
+                
             } else {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReloadDataError"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name("ReloadDataError"), object: nil)
+                
+            }
+        })
+    }
+    
+    static func downloadPin() {
+        let api = API(domain: .Parse)
+        api.get(data: nil, handler: {
+            if $0.0 != nil {
+                let result = $0.0 as! [String: AnyObject]
+                setPins(mapPins: try! Parser.parseMapPins(json: result)!)
+                NotificationCenter.default.post(name: Notification.Name("ReloadData"), object: nil)
+                
+            } else {
+                NotificationCenter.default.post(name: Notification.Name("ReloadDataError"), object: nil)
+                
             }
         })
     }

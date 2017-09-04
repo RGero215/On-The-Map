@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class LocationViewController: UIViewController, UITextFieldDelegate {
+class LocationViewController: UIViewController, UITextFieldDelegate, MKMapViewDelegate {
     
     var mapString: String?
     var coordinate: CLLocationCoordinate2D?
@@ -65,7 +65,7 @@ class LocationViewController: UIViewController, UITextFieldDelegate {
         
         if searchButton.titleLabel?.text == "Submit" && textField.text?.characters.count != 0 {
             submit()
-            print("Submitted")
+            
         } else if textField.text?.characters.count != 0 {
             
             mapString = textField.text
@@ -205,7 +205,6 @@ class LocationViewController: UIViewController, UITextFieldDelegate {
                         let alertController = UIAlertController(title: "Post Successful", message: "Successfully posted your location", preferredStyle: .alert)
                         let action = UIAlertAction(title: "OK", style: .default, handler: { _ in
                             MapPin.downloadPins()
-                            print(MapPin.getPins().count)
                             self.dismiss(animated: true, completion: nil)
                         })
                         alertController.addAction(action)
@@ -224,3 +223,4 @@ class LocationViewController: UIViewController, UITextFieldDelegate {
     }
 
 }
+

@@ -34,9 +34,10 @@ struct API {
         if domain == .Udacity {
             url = "https://www.udacity.com/api/users/\(data!)"
         } else {
-            url = domain.rawValue + "?limit=100&order=-updatedAt".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+            url = domain.rawValue + "?limit=200&skip=400" + "&order=-updatedAt"
+            
         }
-        
+        print("////////////////////////\(url)")
         let request = NSMutableURLRequest(url: NSURL(string: url)! as URL)
         
         request.httpMethod = "GET"
@@ -44,6 +45,7 @@ struct API {
         
         Task(request: request, handler: handler)
     }
+    
     
     func post(body: String, handler: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) {
         
@@ -56,13 +58,17 @@ struct API {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = body.data(using: String.Encoding.utf8)
         
+        
+        print(NSString(data: body.data(using: String.Encoding.utf8)!, encoding: String.Encoding.utf8.rawValue)!)
+        print("////////////////////////\(domain.rawValue)")
+        
         Task(request: request, handler: handler)
     }
     
     func put(objectId: String, body: String, handler: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) {
         
-        let request = NSMutableURLRequest(url: NSURL(string: domain.rawValue + objectId)! as URL)
-        
+        let request = NSMutableURLRequest(url: NSURL(string: "\(domain.rawValue)/ + \(objectId)")! as URL)
+        print("////////////////////////\\\\\\///// \(request)")
         request.httpMethod = "PUT"
         Header(request: request)
         
