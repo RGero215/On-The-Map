@@ -23,11 +23,14 @@
 		D804BFC91F53E5B800C924ED /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D804BFC51F53E5B800C924ED /* FBSDKCoreKit.framework */; };
 		D804BFCA1F53E5B800C924ED /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D804BFC61F53E5B800C924ED /* FBSDKLoginKit.framework */; };
 		D804BFCB1F53E5B800C924ED /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D804BFC71F53E5B800C924ED /* FBSDKShareKit.framework */; };
-		D804BFD91F551B3600C924ED /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D804BFD81F551B3600C924ED /* Parser.swift */; };
-		D804BFDB1F551C2C00C924ED /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D804BFDA1F551C2C00C924ED /* Constants.swift */; };
-		D804BFDD1F5521D800C924ED /* MapPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D804BFDC1F5521D800C924ED /* MapPin.swift */; };
-		D804BFDF1F55236A00C924ED /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D804BFDE1F55236A00C924ED /* API.swift */; };
-		D804BFE11F553F4700C924ED /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D804BFE01F553F4700C924ED /* TabBarController.swift */; };
+		D8187BB61F5E8A9700658149 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8187BB51F5E8A9700658149 /* GCDBlackBox.swift */; };
+		D86FDE721F62A7CC00D9EB98 /* UdacityAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FDE711F62A7CC00D9EB98 /* UdacityAPIConstants.swift */; };
+		D86FDE741F62A7D900D9EB98 /* UdacityAPIMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FDE731F62A7D900D9EB98 /* UdacityAPIMethods.swift */; };
+		D86FDE771F62A84C00D9EB98 /* ParseAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FDE761F62A84C00D9EB98 /* ParseAPIConstants.swift */; };
+		D86FDE791F62A86100D9EB98 /* ParseAPIMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FDE781F62A86100D9EB98 /* ParseAPIMethods.swift */; };
+		D86FDE7B1F62A8F600D9EB98 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FDE7A1F62A8F600D9EB98 /* StudentInformation.swift */; };
+		D86FDE7D1F62AAD100D9EB98 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FDE7C1F62AAD100D9EB98 /* Constants.swift */; };
+		D86FDE7F1F62AEC100D9EB98 /* StudentLocationTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86FDE7E1F62AEC100D9EB98 /* StudentLocationTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,11 +79,15 @@
 		D804BFC51F53E5B800C924ED /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		D804BFC61F53E5B800C924ED /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		D804BFC71F53E5B800C924ED /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-		D804BFD81F551B3600C924ED /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = ../Parser.swift; sourceTree = "<group>"; };
-		D804BFDA1F551C2C00C924ED /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		D804BFDC1F5521D800C924ED /* MapPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPin.swift; sourceTree = "<group>"; };
-		D804BFDE1F55236A00C924ED /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		D804BFE01F553F4700C924ED /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		D8187BB51F5E8A9700658149 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GCDBlackBox.swift; path = ../GCDBlackBox.swift; sourceTree = "<group>"; };
+		D86FDE711F62A7CC00D9EB98 /* UdacityAPIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityAPIConstants.swift; sourceTree = "<group>"; };
+		D86FDE731F62A7D900D9EB98 /* UdacityAPIMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityAPIMethods.swift; sourceTree = "<group>"; };
+		D86FDE761F62A84C00D9EB98 /* ParseAPIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPIConstants.swift; sourceTree = "<group>"; };
+		D86FDE781F62A86100D9EB98 /* ParseAPIMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPIMethods.swift; sourceTree = "<group>"; };
+		D86FDE7A1F62A8F600D9EB98 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
+		D86FDE7C1F62AAD100D9EB98 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D86FDE7E1F62AEC100D9EB98 /* StudentLocationTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocationTabBarController.swift; sourceTree = "<group>"; };
+		D86FDEE61F67CA4700D9EB98 /* On The Map.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "On The Map.entitlements"; sourceTree = "<group>"; };
 		FC7B15E08431383567425379 /* Pods-On The Map.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The Map.release.xcconfig"; path = "Pods/Target Support Files/Pods-On The Map/Pods-On The Map.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,17 +147,19 @@
 		D804BF721F49542D00C924ED /* On The Map */ = {
 			isa = PBXGroup;
 			children = (
-				D804BFD81F551B3600C924ED /* Parser.swift */,
+				D86FDEE61F67CA4700D9EB98 /* On The Map.entitlements */,
+				D86FDE751F62A81800D9EB98 /* ParseClient */,
+				D88E91351F5F327B002503E0 /* UdacityClient */,
+				D86FDE7A1F62A8F600D9EB98 /* StudentInformation.swift */,
+				D86FDE7C1F62AAD100D9EB98 /* Constants.swift */,
+				D804BF751F49542D00C924ED /* LoginViewController.swift */,
+				D86FDE7E1F62AEC100D9EB98 /* StudentLocationTabBarController.swift */,
 				D804BFA51F52225D00C924ED /* MapViewController.swift */,
 				D804BF731F49542D00C924ED /* AppDelegate.swift */,
-				D804BF751F49542D00C924ED /* LoginViewController.swift */,
-				D804BFDC1F5521D800C924ED /* MapPin.swift */,
-				D804BFDA1F551C2C00C924ED /* Constants.swift */,
 				D804BFA31F52221D00C924ED /* ListViewController.swift */,
 				D804BF771F49542D00C924ED /* Main.storyboard */,
-				D804BFE01F553F4700C924ED /* TabBarController.swift */,
 				D804BFA71F52273400C924ED /* LocationViewController.swift */,
-				D804BFDE1F55236A00C924ED /* API.swift */,
+				D8187BB51F5E8A9700658149 /* GCDBlackBox.swift */,
 				D804BF7A1F49542D00C924ED /* Assets.xcassets */,
 				D804BF7C1F49542D00C924ED /* LaunchScreen.storyboard */,
 				D804BF7F1F49542D00C924ED /* Info.plist */,
@@ -179,6 +188,25 @@
 				D804BF951F49542D00C924ED /* Info.plist */,
 			);
 			path = "On The MapUITests";
+			sourceTree = "<group>";
+		};
+		D86FDE751F62A81800D9EB98 /* ParseClient */ = {
+			isa = PBXGroup;
+			children = (
+				D86FDE761F62A84C00D9EB98 /* ParseAPIConstants.swift */,
+				D86FDE781F62A86100D9EB98 /* ParseAPIMethods.swift */,
+			);
+			name = ParseClient;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		D88E91351F5F327B002503E0 /* UdacityClient */ = {
+			isa = PBXGroup;
+			children = (
+				D86FDE711F62A7CC00D9EB98 /* UdacityAPIConstants.swift */,
+				D86FDE731F62A7D900D9EB98 /* UdacityAPIMethods.swift */,
+			);
+			name = UdacityClient;
 			sourceTree = "<group>";
 		};
 		DDF4FA350312A50E787A6C40 /* Pods */ = {
@@ -282,6 +310,11 @@
 						DevelopmentTeam = 29KKRTJA28;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					D804BF831F49542D00C924ED = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -474,16 +507,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D804BFD91F551B3600C924ED /* Parser.swift in Sources */,
-				D804BFE11F553F4700C924ED /* TabBarController.swift in Sources */,
+				D86FDE7B1F62A8F600D9EB98 /* StudentInformation.swift in Sources */,
+				D86FDE791F62A86100D9EB98 /* ParseAPIMethods.swift in Sources */,
 				D804BFA81F52273400C924ED /* LocationViewController.swift in Sources */,
 				D804BF761F49542D00C924ED /* LoginViewController.swift in Sources */,
-				D804BFDF1F55236A00C924ED /* API.swift in Sources */,
-				D804BFDD1F5521D800C924ED /* MapPin.swift in Sources */,
+				D8187BB61F5E8A9700658149 /* GCDBlackBox.swift in Sources */,
+				D86FDE7D1F62AAD100D9EB98 /* Constants.swift in Sources */,
+				D86FDE7F1F62AEC100D9EB98 /* StudentLocationTabBarController.swift in Sources */,
+				D86FDE741F62A7D900D9EB98 /* UdacityAPIMethods.swift in Sources */,
+				D86FDE771F62A84C00D9EB98 /* ParseAPIConstants.swift in Sources */,
 				D804BFA41F52221D00C924ED /* ListViewController.swift in Sources */,
 				D804BF741F49542D00C924ED /* AppDelegate.swift in Sources */,
 				D804BFA61F52225D00C924ED /* MapViewController.swift in Sources */,
-				D804BFDB1F551C2C00C924ED /* Constants.swift in Sources */,
+				D86FDE721F62A7CC00D9EB98 /* UdacityAPIConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +673,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "On The Map/On The Map.entitlements";
 				DEVELOPMENT_TEAM = 29KKRTJA28;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -668,6 +705,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "On The Map/On The Map.entitlements";
 				DEVELOPMENT_TEAM = 29KKRTJA28;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

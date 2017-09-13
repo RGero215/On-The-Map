@@ -48,8 +48,8 @@
                                     <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UNn-8T-BwO"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account? Sign Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8t-N5-D1c">
-                                <rect key="frame" x="36" y="396" width="303" height="25.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8t-N5-D1c">
+                                <rect key="frame" x="36" y="396" width="227" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -67,18 +67,19 @@
                                     <constraint firstAttribute="height" constant="128" id="Py2-W5-jSj"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSC-jR-gZM" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="36" y="607" width="303" height="30"/>
-                                <color key="backgroundColor" red="0.15098526059656719" green="0.35255732138121193" blue="0.86719800161226146" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Sign in with Facebook"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="atW-O1-nKS">
+                                <rect key="frame" x="263" y="390" width="76" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Sign up"/>
                                 <connections>
-                                    <action selector="facebookLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tq2-U1-udx"/>
+                                    <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="96U-FT-lKp"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.31170379517034341" green="0.68724332520794673" blue="0.87246192893401009" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="atW-O1-nKS" secondAttribute="trailing" constant="20" id="0Gl-ZT-LTb"/>
                             <constraint firstItem="y8t-N5-D1c" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="0kz-zR-Wae"/>
                             <constraint firstItem="drp-UF-d7U" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="243-w0-RNy"/>
                             <constraint firstItem="Yb8-8n-Xrz" firstAttribute="centerX" secondItem="OTK-Sk-2n8" secondAttribute="centerX" id="44g-lN-WVm"/>
@@ -86,14 +87,12 @@
                             <constraint firstItem="Yb8-8n-Xrz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="95" id="7Sl-wK-M2e"/>
                             <constraint firstAttribute="trailingMargin" secondItem="A4M-hD-wZL" secondAttribute="trailing" constant="20" id="Cb4-64-HeU"/>
                             <constraint firstItem="A4M-hD-wZL" firstAttribute="top" secondItem="RjY-sD-V2E" secondAttribute="bottom" constant="10" id="IBi-Xv-Bsp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="nSC-jR-gZM" secondAttribute="trailing" constant="20" id="OzU-KH-Acl"/>
                             <constraint firstItem="y8t-N5-D1c" firstAttribute="top" secondItem="drp-UF-d7U" secondAttribute="bottom" constant="10" id="Q4Y-Oe-ZVh"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="y8t-N5-D1c" secondAttribute="trailing" constant="20" id="Qdd-GW-SGL"/>
-                            <constraint firstItem="nSC-jR-gZM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="UfZ-by-qfz"/>
+                            <constraint firstItem="atW-O1-nKS" firstAttribute="top" secondItem="drp-UF-d7U" secondAttribute="bottom" constant="4" id="Xhl-uZ-CJP"/>
                             <constraint firstItem="Yb8-8n-Xrz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="46" id="ZXh-Gf-5kR"/>
                             <constraint firstItem="drp-UF-d7U" firstAttribute="top" secondItem="A4M-hD-wZL" secondAttribute="bottom" constant="10" id="eCM-Dx-NGj"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nSC-jR-gZM" secondAttribute="bottom" constant="30" id="f5T-Ve-WIc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="OTK-Sk-2n8" secondAttribute="trailing" constant="20" id="f8f-e2-bQU"/>
+                            <constraint firstItem="atW-O1-nKS" firstAttribute="leading" secondItem="y8t-N5-D1c" secondAttribute="trailing" id="i8T-l2-F7E"/>
                             <constraint firstAttribute="trailingMargin" secondItem="drp-UF-d7U" secondAttribute="trailing" constant="20" id="jY6-zf-t75"/>
                             <constraint firstItem="A4M-hD-wZL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="opT-wq-j3v"/>
                             <constraint firstItem="OTK-Sk-2n8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="qDh-eS-Kl3"/>
@@ -110,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-922" y="134"/>
+            <point key="canvasLocation" x="-922.39999999999998" y="133.5832083958021"/>
         </scene>
         <!--List-->
         <scene sceneID="e99-v4-O4r">
@@ -346,22 +345,22 @@
         <!--On The Map-->
         <scene sceneID="Z5U-4L-2DM">
             <objects>
-                <tabBarController id="PJZ-ew-1la" customClass="TabBarController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="PJZ-ew-1la" customClass="StudentLocationTabBarController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="On The Map" id="3Op-Dh-uGt">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="6Ws-nH-aOK">
                             <connections>
-                                <action selector="logoutWithSender:" destination="PJZ-ew-1la" id="mpx-yO-nJz"/>
+                                <action selector="logoutAndExit:" destination="PJZ-ew-1la" id="CPX-RR-1YB"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="Refresh" id="6eB-Tz-cpZ">
                                 <connections>
-                                    <action selector="refreshWithSender:" destination="PJZ-ew-1la" id="X5R-pC-wiq"/>
+                                    <action selector="reloadStudentList:" destination="PJZ-ew-1la" id="BGV-Oh-Rks"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="Pin" id="dRc-af-vZc">
                                 <connections>
-                                    <action selector="pinOnTheMapWithSender:" destination="PJZ-ew-1la" id="0iV-Iv-E9g"/>
+                                    <action selector="addStudentInformation:" destination="PJZ-ew-1la" id="vyj-bJ-GH5"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -372,9 +371,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <outlet property="logoutButton" destination="6Ws-nH-aOK" id="BrQ-8j-Kc9"/>
-                        <outlet property="pinButton" destination="dRc-af-vZc" id="scR-xw-OOa"/>
-                        <outlet property="refreshButton" destination="6eB-Tz-cpZ" id="gNv-X7-A12"/>
                         <segue destination="Knw-h1-1Gd" kind="relationship" relationship="viewControllers" id="vpq-Y3-gwu"/>
                         <segue destination="Rz2-kj-4US" kind="relationship" relationship="viewControllers" id="t4i-Hs-sjy"/>
                     </connections>

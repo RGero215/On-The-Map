@@ -9,6 +9,9 @@
 import UIKit
 
 class ListViewController: UITableViewController {
+    
+    static var studentTableView: UITableView = UITableView()
+    static var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
     @IBOutlet weak var studentTableView: UITableView!
     
@@ -29,29 +32,57 @@ class ListViewController: UITableViewController {
         studentTableView.reloadData()
     }
     
+    func displayError(_ title: String?, _ message: String?) {
+        
+        // Display Error
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
 
 }
 
 extension ListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MapPin.getPins().count
+        return StudentLocationTabBarController.studentInformation.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let pin = MapPin.getPins()[indexPath.row]
-        let app = UIApplication.shared
-        let url = URL(string: pin.mediaUrl)
-        app.open(url!, options: [:], completionHandler: nil)
+        // Initialize
+        let cell = tableView.cellForRow(at: indexPath)
+        let url = URL(string: (cell?.detailTextLabel?.text)!)
+        
+        // Guard if no URL was returned
+        guard (url != nil) else {
+            displayError(Constants.ErrorMessage.accessStatus.title.description, Constants.ErrorMessage.openMediaURL.description)
+            return
+        }
+        
+        // Display media link in Safari
+        if UIApplication.shared.canOpenURL(url!) {
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+        } else {
+            displayError(Constants.ErrorMessage.accessStatus.title.description, Constants.ErrorMessage.openMediaURL.description)
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let pin = MapPin.getPins()[indexPath.row]
-        let cell = studentTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath as IndexPath)
+        // Initialize
+        let cell = studentTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
+        let studentDetail = StudentLocationTabBarController.studentInformation[(indexPath as NSIndexPath).row]
         
-        cell.textLabel?.text = pin.firstName + " " + pin.lastName
-        cell.detailTextLabel?.text = pin.mediaUrl
-        cell.imageView?.image = UIImage(named: "Pin")
+        let firstName: String = studentDetail.firstName
+        let lastName: String = studentDetail.lastName
+        let fullName: String = ((firstName + " " + lastName).trimmingCharacters(in: .whitespaces)).capitalized
+        
+        let url: String = (studentDetail.mediaURL).trimmingCharacters(in: .whitespaces).lowercased()
+        
+        // Present
+        cell.textLabel!.text = (fullName != "") ? fullName : "[No Name]"
+        cell.detailTextLabel!.text = (url != "") ? url : "[No Media URL]"
+        cell.imageView!.image = UIImage(named: "Map Pin")
         
         return cell
     }

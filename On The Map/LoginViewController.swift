@@ -11,14 +11,21 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
+    static var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    
     
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    
+    var accessToken = ""
+    
    let loginButton: FBSDKLoginButton = {
         let button = FBSDKLoginButton()
-        button.readPermissions = ["email"]
+        button.readPermissions = ["email",  "public_profile"]
+    
         return button
     }()
 
@@ -27,7 +34,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
+        loginButton.center = view.center
+        loginButtonDesign()
+        
+        
+        facebookLogin()
+        
     
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        facebookLogin()
+    }
+    
+    
+    
+    
+    func loginButtonDesign() {
+        let verticalPosition: CGFloat = 4.0
+        let positionOfFrame = view.center.y - view.center.y / verticalPosition
+        let positionX = view.center.x - (loginButton.frame.width + 60) / 2
+        let positionY = view.center.y - (loginButton.frame.height + 15) / 2
+        let finalPositionY = positionY + positionOfFrame
+        
+        let widthOfFBButton = loginButton.frame.width + 60
+        let heightOfFBButton = loginButton.frame.height + 15
+        
+        loginButton.frame = CGRect(x: positionX, y: finalPositionY, width: widthOfFBButton, height: heightOfFBButton)
+        view.addSubview(loginButton)
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,58 +72,108 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func loginButton(_ sender: UIButton) {
-        if emailTextField.text?.characters.count != 0 && passwordTextField.text?.characters.count != 0 {
-            let email = emailTextField.text
-            let password = passwordTextField.text
-            let credentials = "{\"udacity\": {\"username\": \"\(email!)\", \"password\": \"\(password!)\"}}"
+        if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
+            displayError(Constants.ErrorMessage.loginStatus.title.description, Constants.ErrorMessage.emptyCredentials.description)
+        } else {
             
-            let api = API(domain: .Udacity)
-            api.post(body: credentials, handler: {
-                if let result = $0.0 {
-                    let info = try! Parser.parseSession(json: result)
-                    
-                    if info.0 {
-                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.uniqueKey = info.1
-                        
-                        DispatchQueue.main.async(execute: {
-                            let navigationController = self.storyboard?.instantiateViewController(withIdentifier: "Navigation Controller")
-                            self.present(navigationController!, animated: true, completion: nil)
-                        })
+            // Step-1: Set the parameters
+            let parameters: [String:String] = [
+                Udacity.JSONBodyKeys.Username: emailTextField.text!,
+                Udacity.JSONBodyKeys.Password: passwordTextField.text!
+            ]
+            
+            // Authenticate with Udacity login
+            UdacityAPIMethods.sharedInstance().loginWithID(parameters, authentication: Udacity.JSONBodyKeys.UdacityLogin) { (success, error) in
+                performUIUpdatesOnMain {
+                    if success {
+                        self.completeLogin()
                     } else {
-                        print(info.1)
-                    }
-                    
-                } else {
-                    if $0.1?.code == 403 {
-                        DispatchQueue.main.async(execute: {
-                            let alertController = UIAlertController(title: "Invalid Credentials", message: "The entered email or password is incorrect", preferredStyle: .alert)
-                            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                            self.present(alertController, animated: true, completion: nil)
-                        })
-                    } else {
-                        DispatchQueue.main.async(execute: {
-                            let alertController = UIAlertController(title: "Failure to Connect", message: "Could not connect to the server", preferredStyle: .alert)
-                            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                            self.present(alertController, animated: true, completion: nil)
-                        })
+                        self.displayError(Constants.ErrorMessage.loginStatus.title.description, error)
                     }
                 }
-            })
-        } else {
-            let alertController = UIAlertController(title: "Blank Fields", message: "Please enter email address and password", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
+            }
+        }
+
+        
+    }
+    
+    
+    @IBAction func signUp(_ sender: UIButton) {
+        
+        // Open Udacity signup page in Safari
+        if let url = URL(string: Udacity.Constants.SignUpURL) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+        
+    }
+    
+
+    
+    func facebookLogin() {
+
+
+        // Step-1: Set the parameters
+        
+        if let token = FBSDKAccessToken.current() {
+                    accessToken = token.tokenString
+    
+        }
+        let parameters: [String:String] = [
+        Udacity.JSONBodyKeys.AccessToken: self.accessToken
+        ]
+        let authentication = Udacity.JSONBodyKeys.FacebookLogin
+         //print("********************/////////////************\(parameters)")
+        // Authenticate with Udacity login
+        UdacityAPIMethods.sharedInstance().loginWithID(parameters, authentication: authentication ) { (success, error) in
+            print("********************/////////////************\(authentication)")
+            print("********************/////////////************\(parameters)")
+            performUIUpdatesOnMain {
+                if error != nil {
+                    self.displayError(Constants.ErrorMessage.loginStatus.title.description, error)
+                } else {
+                   
+                    self.completeLogin()
+                }
+            }
         }
     }
     
     
-    @IBAction func facebookLogin(_ sender: UIButton) {
+    
+    // MARK: Class Functions
+    func completeLogin() {
         
         
+        
+        //clearTextFields()
+        
+        // Present student location views
+        let controller = self.storyboard!.instantiateViewController(withIdentifier: "Navigation Controller") as! UINavigationController
+        self.present(controller, animated: true, completion: nil)
     }
     
+    func displayError(_ title: String?, _ message: String?) {
+        
+
+        stopAnimating()
+        
+        // Display Error
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
+    func startAnimating() {
+        
+        LoginViewController.activityIndicator.startAnimating()
+        self.view.alpha = 0.75
+    }
+    
+    func stopAnimating() {
+        
+        LoginViewController.activityIndicator.stopAnimating()
+        self.view.alpha = 1.0
+    }
     
     
 }
