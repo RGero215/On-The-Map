@@ -50,6 +50,7 @@ class LocationViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
         textField.textColor = UIColor.white
         textField.backgroundColor = UIColor(red: 2/255, green: 179/255, blue: 228/255, alpha: 1)
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        definesPresentationContext = true
 
         
         
@@ -61,7 +62,9 @@ class LocationViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
     }
     
     @IBAction func cancel(_ sender: UIButton) {
+        
         self.dismiss(animated: true, completion: nil)
+        
     }
 
     @IBAction func find(_ sender: UIButton) {

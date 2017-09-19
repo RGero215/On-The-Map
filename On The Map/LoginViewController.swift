@@ -38,14 +38,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginButtonDesign()
         
         
-        facebookLogin()
+//        facebookLogin()
         
     
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        facebookLogin()
+//        facebookLogin()
     }
     
     

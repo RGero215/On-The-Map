@@ -86,5 +86,16 @@ struct StudentInformation {
         return studentInformation
     }
     
+    static func sharedInstance() -> [StudentInformation] {
+        
+        struct Singleton {
+            
+            static var sharedInstance = [StudentInformation]()
+        }
+        
+        return Singleton.sharedInstance
+        
+    }
+    
     
 }

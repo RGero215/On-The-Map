@@ -16,8 +16,10 @@ class StudentLocationTabBarController: UITabBarController, UINavigationControlle
     
     // MARK: Properties
     
-    static var studentInformation: [StudentInformation] = [StudentInformation]()
-    var overwriting = true
+    //static var studentInformation: [StudentInformation] = [StudentInformation]()
+    static var studentInformation =  StudentInformation.sharedInstance()
+    
+    var overwriting = false
     
     // MARK: Actions
     @IBAction func logoutAndExit(_ sender: UIBarButtonItem) {
@@ -26,10 +28,10 @@ class StudentLocationTabBarController: UITabBarController, UINavigationControlle
         setUIEnabled(false)
         startAnimating()
         logoutAndExit()
-        let loginView = LoginViewController()
-        if loginView.accessToken == FBSDKAccessToken.current().tokenString {
-            FBSDKLoginManager().logOut()
-        }
+//        let loginView = LoginViewController()
+//        if loginView.accessToken == FBSDKAccessToken.current().tokenString {
+//            FBSDKLoginManager().logOut()
+//        }
         
     }
     
@@ -46,22 +48,30 @@ class StudentLocationTabBarController: UITabBarController, UINavigationControlle
         // Get student name and present student information view
         setUIEnabled(false)
         startAnimating()
+        
         for student in StudentLocationTabBarController.studentInformation {
             if student.uniqueKey == UdacityAPIMethods.sharedInstance().userID {
                 overwriting = true
-                overwriteLocation()
+                //overwriteLocation()
                 print("**********\(student.objectId)")
                 LocationViewController.objID = student.objectId
                 print("**********\(LocationViewController.objID)")
                 
                 print("/////////////////\(student.uniqueKey)")
                 print("/////////////////\(UdacityAPIMethods.sharedInstance().userID!)")
-            } else {
-                overwriting = false
-                getStudentsInformation()
+                
+                break
+                
             }
         }
-        
+        if overwriting == true {
+            overwriteLocation()
+        } else {
+            overwriting = false
+            getStudentNameAndExit()
+            
+        }
+
         
         
     }
@@ -69,7 +79,6 @@ class StudentLocationTabBarController: UITabBarController, UINavigationControlle
     // MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
     }
     
@@ -81,12 +90,14 @@ class StudentLocationTabBarController: UITabBarController, UINavigationControlle
         setUIEnabled(true)
         getStudentsInformation()
         startAnimating()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
         stopAnimating()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -101,6 +112,7 @@ class StudentLocationTabBarController: UITabBarController, UINavigationControlle
     }
     
     // MARK: Class Functions
+    
     func logoutAndExit() {
         
         // Chain completion handlers for each request so that they run one after the other
@@ -204,9 +216,13 @@ class StudentLocationTabBarController: UITabBarController, UINavigationControlle
     }
     
     func overwriteLocation() {
+        
         let alert = UIAlertController(title: "Overwrite", message: "You Have Already Posted A Student Location.  Would You Like To Overwrite Your Current Location? ", preferredStyle: .alert)
         let overwrite = UIAlertAction(title: "Overwrite", style: .destructive, handler: { (action: UIAlertAction!) in
+
             self.getStudentNameAndExit()
+            
+        
         })
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
             
@@ -215,7 +231,12 @@ class StudentLocationTabBarController: UITabBarController, UINavigationControlle
         alert.addAction(overwrite)
         alert.addAction(cancel)
         
+
         self.present(alert, animated: true, completion: nil)
+       
+        
+        
+    
     }
 }
 

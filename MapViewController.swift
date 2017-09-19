@@ -31,7 +31,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(viewDidLoad), name:Notification.Name("ReloadData"), object: nil)
         
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
