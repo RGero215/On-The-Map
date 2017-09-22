@@ -38,14 +38,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         NotificationCenter.default.removeObserver(self, name: Notification.Name("ReloadData"), object: nil)
     }
     
-    
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
    
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

@@ -28,10 +28,7 @@ class StudentLocationTabBarController: UITabBarController, UINavigationControlle
         setUIEnabled(false)
         startAnimating()
         logoutAndExit()
-//        let loginView = LoginViewController()
-//        if loginView.accessToken == FBSDKAccessToken.current().tokenString {
-//            FBSDKLoginManager().logOut()
-//        }
+
         
     }
     
@@ -76,11 +73,7 @@ class StudentLocationTabBarController: UITabBarController, UINavigationControlle
         
     }
     
-    // MARK: Overrides
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -106,10 +99,7 @@ class StudentLocationTabBarController: UITabBarController, UINavigationControlle
         stopAnimating()
     }
     
-    override func didReceiveMemoryWarning() {
-        
-        super.didReceiveMemoryWarning()
-    }
+    
     
     // MARK: Class Functions
     

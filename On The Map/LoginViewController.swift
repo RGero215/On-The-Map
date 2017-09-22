@@ -37,6 +37,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginButton.center = view.center
         loginButtonDesign()
         
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        
         
 //        facebookLogin()
         
@@ -65,10 +67,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(loginButton)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     
     @IBAction func loginButton(_ sender: UIButton) {
@@ -149,7 +147,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // Present student location views
         let controller = self.storyboard!.instantiateViewController(withIdentifier: "Navigation Controller") as! UINavigationController
-        self.present(controller, animated: true, completion: nil)
+        present(controller, animated: true, completion: nil)
     }
     
     func displayError(_ title: String?, _ message: String?) {
@@ -173,6 +171,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         LoginViewController.activityIndicator.stopAnimating()
         self.view.alpha = 1.0
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+        return true
     }
     
     
