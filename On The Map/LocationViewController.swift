@@ -35,6 +35,7 @@ class LocationViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
    
     @IBOutlet weak var bottomLabel: UILabel!
     
+   
     
     
     var origin : UIViewController!
@@ -50,16 +51,10 @@ class LocationViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
         textField.textColor = UIColor.white
         textField.backgroundColor = UIColor(red: 2/255, green: 179/255, blue: 228/255, alpha: 1)
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
-        definesPresentationContext = true
-
         
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     
     @IBAction func cancel(_ sender: UIButton) {
         
@@ -94,11 +89,12 @@ class LocationViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
             self.topLabel.isHidden = true
             self.cancelButton.titleLabel?.textColor = .white
             
-            
+        
             // Add text field view
             self.textField.text = ""
             self.textField.keyboardType = .URL
             self.textField.placeholder = "Enter a Link to Share Here"
+            
             self.textField.becomeFirstResponder()
             
             let titleConstraints: [NSLayoutConstraint] = [
@@ -109,11 +105,19 @@ class LocationViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
             ]
             self.view.addConstraints(titleConstraints)
             
-            self.stackView.addArrangedSubview(self.textField)
+            
+            
+            
+            
+            
             
             // Add map view
+            
             let mapView = MKMapView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-            self.stackView.addArrangedSubview(mapView)
+            
+                self.stackView.addArrangedSubview(mapView)
+            
+            
             
             self.view.addConstraint(
                 
@@ -128,8 +132,8 @@ class LocationViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
             ))
             
             
-            // Add button view
             
+            // Add button view
             
             self.searchButton.setTitle("Submit", for: .normal)
             
@@ -191,6 +195,8 @@ class LocationViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
     
     func submit() {
         let submitOption = StudentLocationTabBarController()
+        
+        // Will only work if an existing location exist within the request.  To test please make a new post and then retry.
         if textField.text?.characters.count != 0 && submitOption.overwriting == true {
             
             MapViewController.mapView.deselectAnnotation(MapViewController.mapView.annotations[0], animated: true)
@@ -229,7 +235,7 @@ class LocationViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
                 }
             }
             
-            
+            // Only works if there's no post recently within the request
         } else if textField.text?.characters.count != 0 && submitOption.overwriting == false {
             
             MapViewController.mapView.deselectAnnotation(MapViewController.mapView.annotations[0], animated: true)
@@ -268,11 +274,11 @@ class LocationViewController: UIViewController, UITextFieldDelegate, MKMapViewDe
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         textField.resignFirstResponder()
         
         return true
     }
-    
     
     
     func displayError(_ title: String?, _ message: String?) {

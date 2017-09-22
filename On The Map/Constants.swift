@@ -64,7 +64,7 @@ struct Constants {
             case .invalidCredentials:
                 return "Invalid Email or Password"
             case .sessionRequestError:
-                return "There was an error with your request"
+                return "The Internet connection appears to be offline."
             case .sessionRequestResponseError:
                 return "Your request returned a status code other than 2xx"
             case .sessionRequestDataError:

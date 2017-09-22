@@ -70,7 +70,8 @@ extension ListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Initialize
-        let cell = studentTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
+        //let cell = studentTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
+        let cell = studentTableView.dequeueReusableCell(withIdentifier: "Cell")
         let studentDetail = StudentLocationTabBarController.studentInformation[(indexPath as NSIndexPath).row]
         
         let firstName: String = studentDetail.firstName
@@ -80,10 +81,10 @@ extension ListViewController {
         let url: String = (studentDetail.mediaURL).trimmingCharacters(in: .whitespaces).lowercased()
         
         // Present
-        cell.textLabel!.text = (fullName != "") ? fullName : "[No Name]"
-        cell.detailTextLabel!.text = (url != "") ? url : "[No Media URL]"
-        cell.imageView!.image = UIImage(named: "Map Pin")
+        cell?.textLabel!.text = (fullName != "") ? fullName : "[No Name]"
+        cell?.detailTextLabel!.text = (url != "") ? url : "[No Media URL]"
+        cell?.imageView!.image = UIImage(named: "Map Pin")
         
-        return cell
+        return cell!
     }
 }
